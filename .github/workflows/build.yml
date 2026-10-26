@@ -114,3 +114,28 @@ jobs:
             --pattern '*.exe' --pattern '*.dmg' --pattern '*.AppImage' --pattern '*.deb'
           sha256sum * > SHA256SUMS
           gh release upload "$TAG" SHA256SUMS --repo "$GITHUB_REPOSITORY" --clobber
+
+      # Sends each installer to VirusTotal and lists the result pages in the
+      # release notes. Skipped when the VT_API_KEY secret isn't set.
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if [ -z "$VT_API_KEY" ]; then echo "VT_API_KEY not set, skipping"; exit 0; fi
+          cd out
+          links=""
+          for f in *.exe *.dmg *.AppImage *.deb; do
+            [ -f "$f" ] || continue
+            # files over 32 MB need a one-off upload URL
+            url="https://www.virustotal.com/api/v3/files"
+            if [ "$(stat -c%s "$f")" -gt 33554432 ]; then
+              url=$(curl -s -H "x-apikey: $VT_API_KEY" https://www.virustotal.com/api/v3/files/upload_url | jq -r .data)
+            fi
+            curl -s -o /dev/null -H "x-apikey: $VT_API_KEY" -F "file=@$f" "$url" || true
+            sum=$(sha256sum "$f" | cut -d' ' -f1)
+            links="$links- [$f](https://www.virustotal.com/gui/file/$sum)"$'\n'
+          done
+          body=$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json body --jq .body)
+          printf '%s\n\n### VirusTotal tarama sonuçları\n\n%s' "$body" "$links" > notes.md
+          gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --notes-file notes.md

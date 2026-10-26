@@ -30,7 +30,7 @@ Güvenlik taraması bilinen şüpheli kalıpları arar; "şüpheli bulgu yok" de
 
 ## İndirme ve güncelleme
 
-Sürümler [Releases](../../releases) sayfasında, her sürümde `SHA256SUMS` dosyasıyla birlikte.
+Sürümler [Releases](../../releases) sayfasında, her sürümde `SHA256SUMS` dosyası ve VirusTotal tarama bağlantılarıyla birlikte.
 
 Uygulama içinden güncellemek için **Ayarlar › Hakkında › Güncellemeleri denetle**. Güncelleme paketleri imzalıdır; imzası tutmayan bir dosya kurulmaz.
 
@@ -92,6 +92,7 @@ cargo test --workspace
 
 - `TAURI_SIGNING_PRIVATE_KEY`
 - `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` (anahtar şifresizse boş)
+- `VT_API_KEY` (isteğe bağlı) — tanımlıysa kurulum dosyaları VirusTotal'e gönderilir ve sonuç bağlantıları sürüm notlarına eklenir
 
 ## Lisans
 
