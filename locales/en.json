@@ -1,0 +1,728 @@
+{
+  "app": {
+    "name": "Sunucu Analiz - Foxivo"
+  },
+  "titlebar": {
+    "home": "Home",
+    "language": "Language",
+    "settings": "Settings",
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "restore": "Restore",
+    "close": "Close"
+  },
+  "home": {
+    "title": "Let's check your",
+    "titleAccent": "server together",
+    "subtitle": "Pick the folder and see what needs fixing in seconds.",
+    "drop": "Drag your server folder here",
+    "dropActive": "Let go, we'll take a look",
+    "dropHint": "The main folder with server.properties and plugins",
+    "choose": "Choose folder",
+    "pickTitle": "Choose your server folder",
+    "scanning": "Scanning…",
+    "scanningHint": "Reading plugins and config files. Nothing is being changed.",
+    "recent": "Scan {name} again",
+    "note": "Scanning is read-only, no files are changed.",
+    "steps": {
+      "pick": "Pick the folder",
+      "pickHint": "Drag or choose your server's main folder.",
+      "review": "Review the report",
+      "reviewHint": "Issues are listed in order of importance.",
+      "fix": "Approve and fix",
+      "fixHint": "A backup comes first, then only what you approve changes."
+    },
+    "phase": {
+      "plugins": "Inspecting plugins ({done}/{total})",
+      "verify": "Comparing with official releases",
+      "files": "Reading config files ({done}/{total})"
+    }
+  },
+  "modules": {
+    "security": "Security scan",
+    "replace": "Replace sample values",
+    "encoding": "Fix Turkish characters",
+    "optimize": "Optimize server",
+    "anticheat": "Anticheat review",
+    "backups": "Backups & undo"
+  },
+  "cards": {
+    "high": "{n} high",
+    "findings": "{n} findings",
+    "clean": "Clean",
+    "securityHint": "Worth reviewing: {file}",
+    "securityClean": "No suspicious findings in {n} plugins",
+    "spots": "{n} spots",
+    "replaceHint": "{value} and {n} more",
+    "replaceClean": "No sample values found",
+    "files": "{n} files",
+    "encodingHint": "Can be fixed safely",
+    "encodingClean": "No broken characters",
+    "tips": "{n} tips",
+    "good": "Good",
+    "optimizeHint": "Nothing is applied on its own",
+    "optimizeClean": "Settings look fine",
+    "systems": "{n} systems",
+    "none": "None",
+    "anticheatMany": "{a} and {b} run together",
+    "anticheatNone": "No anticheat · suggestion ready",
+    "ready": "Ready",
+    "backupsHint": "Automatic before every change",
+    "securityVerified": "{n}/{total} plugins verified as official"
+  },
+  "result": {
+    "plugins": "{n} plugins",
+    "title": "{n} things we should",
+    "titleAccent": "look at together",
+    "cleanTitle": "Everything",
+    "cleanAccent": "looks good",
+    "subtitle": "No files were changed during the scan.",
+    "running": "The server is running right now. You can review the report, but stop the server before applying any fix.",
+    "nextLabel": "First step",
+    "next": {
+      "security": "Look at the security findings",
+      "replace": "Replace sample values with your own",
+      "encoding": "Fix broken Turkish characters",
+      "optimize": "Check the performance tips",
+      "anticheat": "Review the anticheat overlap"
+    },
+    "start": "Start",
+    "readonlyTitle": "Read-only",
+    "readonly": "nothing changes without you",
+    "another": "Another folder",
+    "share": "Save report",
+    "raise": "How do I raise my score? (+{n})",
+    "raiseTitle": "You're at {score}. Fix the items below to reach {max}.",
+    "fix": "Fix",
+    "raiseTip": {
+      "security": "Review suspicious plugins, replace them with official releases if needed",
+      "replace": "Replace sample values with your own",
+      "encoding": "Fix broken Turkish characters",
+      "optimize": "Apply the performance tips",
+      "anticheat": "Use a single anticheat"
+    }
+  },
+  "module": {
+    "back": "Back to report",
+    "why": "Why it matters",
+    "hide": "Hide"
+  },
+  "sev": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "info": "Info"
+  },
+  "security": {
+    "lead": "{n} plugins were inspected without running them. Findings aren't verdicts; reviewing them is recommended.",
+    "rules": {
+      "hiddenLoader": {
+        "title": "Can load hidden code",
+        "why": "The same piece of code both decodes Base64 data and can define it as a class (defineClass). Malicious plugins hide their code this way; some licensing and protection systems do something similar. If you're not sure the plugin came from a trusted source, replace it with the official release."
+      },
+      "remoteCode": {
+        "title": "Can load a jar from a remote address",
+        "why": "The same piece of code has a class loader (URLClassLoader) and a .jar or .class file on an unknown address. Some plugins download their libraries this way; if the address isn't familiar, verify where the plugin came from."
+      },
+      "execAndDownload": {
+        "title": "Command call next to an unknown address",
+        "why": "The same piece of code has a system command call (Runtime.exec or ProcessBuilder) and an unknown address. Having both in one place points to a risk of fetching and running something from outside. A scan alone can't know what the code really does; reviewing it is recommended."
+      },
+      "chatOp": {
+        "title": "Grants op in code that listens to chat",
+        "why": "The same piece of code listens to chat or command events and contains a setOp call that makes a player op. Backdoors triggered by a secret command look like this; it can be legitimate in admin plugins. Check whether this behavior is documented by the plugin."
+      },
+      "jarWriter": {
+        "title": "Code that can write jar files",
+        "why": "This piece of code can create a jar/zip file and contains a path with .jar in it. Malware that spreads by infecting other plugins uses this method; some updaters and export tools contain similar code too."
+      },
+      "exec": {
+        "title": "Contains a system command call",
+        "why": "The code has a Runtime.exec or ProcessBuilder call. Many plugins use this for harmless things like reading system information; on its own it isn't a risk signal and doesn't lower the score."
+      },
+      "webhook": {
+        "title": "Contains a Discord webhook",
+        "why": "The plugin's code contains a Discord webhook address, so it can post messages to Discord. That's normal for notification plugins; in a plugin you don't know, keep in mind it could send server details out."
+      },
+      "unknownDomain": {
+        "title": "Contains an unknown address",
+        "why": "The plugin's code mentions an address that isn't a common plugin source. That doesn't mean the plugin connects to it; usually it's a documentation, support or statistics link. It doesn't lower the score."
+      },
+      "obfuscated": {
+        "title": "Heavily obfuscated code",
+        "why": "Most class names are made unreadable. Common in paid plugins and not harmful on its own, but it makes reviewing the content harder."
+      }
+    },
+    "disclaimer": "This scan looks for known suspicious patterns. No findings means \"nothing suspicious seen\", not \"definitely safe\".",
+    "cleanTitle": "Nothing suspicious seen",
+    "cleanText": "None of the known suspicious patterns were found in {n} plugins.",
+    "cleanList": "Plugins that look clean ({n})",
+    "officialTag": "Official",
+    "officialWhy": "This file is byte-identical to the official upload, so this behavior is part of the plugin's own code and wasn't added later.",
+    "verifiedTitle": "{n}/{total} plugins match the official release exactly",
+    "verifiedText": "These files match the official uploads on Modrinth byte for byte, so nobody changed them. A fake or tampered copy can't pass this check.",
+    "verifyOff": "Official release verification is off. Turn it on in Settings to compare plugins with the official files on Modrinth.",
+    "notes": "Notes ({n})",
+    "pluginList": "All plugins ({n})",
+    "official": "{source} official",
+    "unverified": "Not verified",
+    "unverifiedWhy": "\"Not verified\" doesn't mean bad: the plugin may not be on Modrinth or may come from another site (SpigotMC, the author's site). Make sure you downloaded these from a source you trust.",
+    "search": "Find official release",
+    "searchHint": "Open the plugin's official page on Modrinth",
+    "advice": "Suggested: download the plugin again from its official page and replace this file. If you're unsure, copy the prompt and ask an AI assistant; the final call is yours.",
+    "ai": {
+      "button": "Ask an AI",
+      "hint": "Copies a ready-made question about this finding. The app sends nothing.",
+      "copied": "Prompt copied. Paste it into an assistant like ChatGPT, Claude or Gemini.",
+      "prompt": "A security scan flagged a plugin on my Minecraft server. Can you help me figure out whether it's a false positive?\n\nServer: {server}\nPlugin: {plugin} (file: plugins/{file})\nWhat the scan saw:\n{findings}\n\nThe scan didn't run the jar; it looked at method calls and addresses inside the class files. The file did not match any official release on Modrinth, or wasn't found there.\n\nPlease:\n1. Explain whether this behavior is normal for this plugin.\n2. Tell me the official download source and how I can verify the file is genuine.\n3. List safe steps I can take without stopping the server or losing data.\nDon't guess where you're not sure; say so."
+    },
+    "updates": "Plugin updates ({n})",
+    "updatesHint": "Only stable releases compatible with your server software and Minecraft version are shown. Check the plugin's changelog before updating.",
+    "download": "Download"
+  },
+  "replace": {
+    "lead": "Sample values left over from the ready-made pack. Type what should go in their place, preview, and approve.",
+    "spots": "{n} spots · {files} files",
+    "placeholder": "New value",
+    "newValue": "Value to use instead of {value}",
+    "hint": "Values you leave empty stay as they are. Color codes (&6, §a) and file structure are kept. What you type is remembered for your next server.",
+    "filled": "{n}/{total} values filled in",
+    "preview": "Preview",
+    "cleanTitle": "No sample values left",
+    "cleanText": "None of the known sample values were found.",
+    "planTitle": "Replace sample values",
+    "detected": "Found in this pack"
+  },
+  "encoding": {
+    "lead": "Files with broken Turkish characters. Only damage that can be reversed safely is fixed.",
+    "kind": {
+      "mojibake": "Broken characters",
+      "legacy": "Old encoding (Windows-1254)"
+    },
+    "lines": "{n} lines",
+    "hint": "The red line is how it looks now, the green one is the fix. Untick any file you want to leave alone.",
+    "selected": "{n} files selected",
+    "fix": "Fix selected",
+    "cleanTitle": "No broken characters",
+    "cleanText": "Every file reads correctly.",
+    "planTitle": "Fix Turkish characters"
+  },
+  "optimize": {
+    "lead": "Suggestions based on your config files. None are applied on their own; pick the ones you want.",
+    "tips": {
+      "viewDistance": {
+        "title": "Lower view distance",
+        "why": "Fewer chunks are loaded per player, noticeably cutting RAM and CPU load. Players see distant terrain a little later."
+      },
+      "simulationDistance": {
+        "title": "Lower simulation distance",
+        "why": "Mobs and redstone stop ticking far from players. Distant farms may slow down, so it's marked as gameplay-affecting."
+      },
+      "syncChunkWrites": {
+        "title": "Turn off synchronous chunk writes",
+        "why": "Chunks are written to disk in the background, so saves cause fewer hiccups. Considered safe on Paper and its forks."
+      },
+      "aikarFlags": {
+        "title": "Use recommended JVM flags",
+        "why": "Your start script has no garbage collector tuning. Adding these flags before -jar reduces lag spikes. Start scripts differ from server to server, so we don't edit it for you."
+      }
+    },
+    "gameplay": "Affects gameplay",
+    "copy": "Copy flags",
+    "copied": "Flags copied to clipboard",
+    "hint": "Every applied setting is backed up; you can undo it from the Backups screen in one click.",
+    "selected": "{n} tips selected",
+    "apply": "Apply selected",
+    "cleanTitle": "Settings look fine",
+    "cleanText": "Nothing to suggest in server.properties or the start script.",
+    "planTitle": "Apply optimization tips"
+  },
+  "anticheat": {
+    "lead": "Installed anticheat plugins and observations about running them together.",
+    "manyTitle": "More than one anticheat is running: {names}",
+    "manyWhy": "When two systems check the same movements, the risk of false bans and performance loss goes up. Most servers run more stably with a single anticheat.",
+    "found": "Anticheat plugins found",
+    "tipTitle": "General tip",
+    "tip": "Starting automatic punishments with a warning or kick and watching for a while keeps laggy players from being banned unfairly.",
+    "disclaimer": "These are observations, not verdicts. Check the plugin's own page for version support.",
+    "noneTitle": "No anticheat found",
+    "noneText": "No anticheat plugin is installed. It isn't required, but if you want protection against cheats, see the suggestion below.",
+    "suggestTitle": "Suggested anticheat",
+    "free": "Free · open source",
+    "grim": "A free, open-source anticheat widely used by the community. It checks player movement by simulating it on the server, aiming to keep unfair detections to a minimum. Check the supported Minecraft versions on its page before installing.",
+    "openPage": "Open official page",
+    "others": "Vulcan and Polar are common paid options. Whichever you pick, use a single anticheat and start punishments with a warning.",
+    "ai": {
+      "many": "My Minecraft server has more than one anticheat plugin installed and I want to decide which one to keep.\n\nServer: {server}\nInstalled anticheats: {names}\nTotal plugins: {plugins}\n\nPlease:\n1. What are the risks of running these together (false bans, performance)?\n2. Which one makes more sense to keep for my server, and why?\n3. How do I disable the other without affecting players or breaking the server?\n4. What basic settings do you suggest to avoid unfair bans?\nDon't guess where you're not sure; say so.",
+      "choose": "I want to choose an anticheat for my Minecraft server.\n\nServer: {server}\nInstalled plugins: {plugins}\n\nPlease compare reliable anticheat options (free and paid) that are compatible with this server software and version. For each, give the official download source, known incompatibilities and starting settings that avoid unfair bans. Suggest steps that won't stop the server from running. Don't guess where you're not sure; say so."
+    }
+  },
+  "backups": {
+    "lead": "Backups taken before every change. Restore any of them in one click.",
+    "loading": "Reading backups…",
+    "label": {
+      "replace": "Sample value change",
+      "encoding": "Turkish character fix",
+      "optimize": "Optimization settings"
+    },
+    "files": "{n} files",
+    "wasRestored": "Restored",
+    "restore": "Restore",
+    "restored": "{n} files are back to how they were",
+    "emptyTitle": "No backups yet",
+    "emptyText": "When you apply a fix, a backup is taken right before the change and shows up here.",
+    "where": "Backup location: {dir} · kept for {days} days",
+    "always": "Backups are always on",
+    "openDir": "Open folder",
+    "confirmTitle": "Restore this backup"
+  },
+  "plan": {
+    "summary": "{changes} changes in {files} files.",
+    "changes": "{n} changes",
+    "more": "and {n} more files",
+    "safety": "A backup is taken before anything changes. If something goes wrong, the change is undone automatically.",
+    "cancel": "Cancel",
+    "confirm": "Approve and apply",
+    "applying": "Applying…",
+    "nothing": "Nothing to change.",
+    "done": "{n} files updated, backup taken."
+  },
+  "errors": {
+    "desktop": "This only works in the desktop app.",
+    "notServer": "This folder doesn't look like a Minecraft server. Choose the main folder that has server.properties or plugins.",
+    "notFound": "Folder not found.",
+    "running": "The server is running. Stop it before making changes.",
+    "invalid": "The change would have broken the file, so it wasn't applied. No files were changed.",
+    "protected": "Worlds, player data and plugin jars are never written to.",
+    "generic": "Something went wrong: {msg}",
+    "clipboard": "Couldn't copy to the clipboard."
+  },
+  "share": {
+    "title": "Server report",
+    "score": "Health score",
+    "date": "Date",
+    "summary": "Summary",
+    "plugins": "Plugins",
+    "saved": "Report saved. File paths and your user name were hidden."
+  },
+  "settings": {
+    "title": "Settings",
+    "back": "Back",
+    "autosave": "Changes are saved instantly",
+    "general": "General",
+    "language": "Language",
+    "languageHint": "Interface language",
+    "scale": "Interface size",
+    "scaleHint": "Auto fits the window",
+    "scaleCompact": "Small",
+    "scaleAuto": "Auto",
+    "scaleLarge": "Large",
+    "glow": "Background light",
+    "glowHint": "Slowly moving colored light",
+    "reduceMotion": "Reduce motion",
+    "reduceMotionHint": "Keep animations to a minimum",
+    "safety": "Safety & privacy",
+    "approval": "Approve every change",
+    "approvalHint": "No file changes without approval",
+    "alwaysOn": "Always on",
+    "autoBackup": "Automatic backup",
+    "autoBackupHint": "Taken before every change",
+    "diagnostics": "Diagnostics log",
+    "diagnosticsHint": "For support, personal paths are hidden",
+    "export": "Export",
+    "backups": "Backups",
+    "backupDir": "Backup location",
+    "backupDirHint": "Outside the server folder",
+    "retention": "Keep backups for",
+    "retentionHint": "Older ones are deleted on launch",
+    "days": "{n} days",
+    "openBackups": "Backup folder",
+    "openBackupsHint": "Open in file explorer",
+    "open": "Open",
+    "about": "About",
+    "version": "Version",
+    "madeBy": "Developer",
+    "verifyOnline": "Official release check",
+    "verifyOnlineHint": "Only a file hash is sent to Modrinth",
+    "closeToTray": "Keep running in background",
+    "closeToTrayHint": "Closing leaves it in the system tray",
+    "autoUpdate": "Check for updates automatically",
+    "autoUpdateHint": "Looks for a new GitHub release on launch",
+    "detectRunning": "Detect running server",
+    "detectRunningHint": "No writes while it's running",
+    "versionLine": "Rule pack {rules} · MIT license"
+  },
+  "help": {
+    "open": "Help",
+    "close": "Close help",
+    "closeShort": "Close",
+    "title": "Help",
+    "subtitle": "Answers questions about the app",
+    "greeting": "Hi! I'm the app's help assistant. Ask me anything about scanning, backups, security or settings.",
+    "placeholder": "Type a question…",
+    "send": "Send",
+    "offline": "Works offline, nothing is sent.",
+    "community": "Community",
+    "fallback": "I didn't quite get that. Could you try different words? If not, we can help on our community server.",
+    "topics": [
+      {
+        "q": "Does it touch my files?",
+        "keys": [
+          "touch",
+          "my files",
+          "approv",
+          "read-only",
+          "readonly",
+          "modify",
+          "~safe",
+          "~harm",
+          "~change",
+          "~break"
+        ],
+        "answer": "No, nothing changes without your approval. Scanning is completely read-only. When you want to apply a fix, you first get a plan showing exactly what will change and approve each item one by one. A backup is taken first, and if anything goes wrong the change is rolled back automatically."
+      },
+      {
+        "q": "How do I scan?",
+        "keys": [
+          "scan",
+          "folder",
+          "drag",
+          "drop",
+          "get started",
+          "first step",
+          "~use",
+          "~start",
+          "~choose",
+          "how to use",
+          "what does it do"
+        ],
+        "answer": "Drag your server folder onto the box on the home screen, or click the box and choose it. It should be the main server folder, the one that contains server.properties and the plugins folder. The health report opens within a few seconds."
+      },
+      {
+        "q": "What is the health score?",
+        "keys": [
+          "score",
+          "health",
+          "points",
+          "100",
+          "rating"
+        ],
+        "answer": "The health score is an overall summary from 0 to 100. Security findings, configuration issues, broken characters and compatibility warnings lower it based on their weight. The score isn't a verdict on its own; the details on each card matter more."
+      },
+      {
+        "q": "Where are backups?",
+        "keys": [
+          "backup",
+          "undo",
+          "restore",
+          "revert",
+          "recover",
+          "roll back"
+        ],
+        "answer": "Backups are kept outside the server folder, in ~/Foxivo/Yedekler by default, for 30 days. You can change the location and retention under Settings › Backups. Every operation can be undone with one click from the Backups & undo screen."
+      },
+      {
+        "q": "Does the security scan find viruses?",
+        "keys": [
+          "virus",
+          "malware",
+          "security",
+          "suspicious",
+          "backdoor",
+          "jar",
+          "hack"
+        ],
+        "answer": "The security scan inspects plugin jars without running them and looks for suspicious patterns such as connections to unknown addresses, command execution or hidden op grants. A finding doesn't mean a plugin is definitely malicious and false positives are possible, so every finding comes with its reason and a suggestion to review it."
+      },
+      {
+        "q": "Could these findings be false alarms?",
+        "keys": [
+          "false",
+          "alarm",
+          "sure",
+          "certain",
+          "real",
+          "official",
+          "verify",
+          "modrinth",
+          "original",
+          "tampered"
+        ],
+        "answer": "They can be; the scan looks for known suspicious patterns and some legitimate plugins use similar code. The definite answer comes from the official release check: each plugin's file hash is compared with the official upload on Modrinth. If it matches exactly, nobody touched the file; a fake or tampered copy can't match. Notes inside official files don't lower the score."
+      },
+      {
+        "q": "How do I replace sample values?",
+        "keys": [
+          "sample",
+          "placeholder",
+          "sunucuadiniz",
+          "replace",
+          "server name",
+          "brand",
+          "rename"
+        ],
+        "answer": "It finds values like sunucuadiniz.com, Server Name and sample Discord or store links across all config, language and menu files of ready-made packs. You enter your own details in one form, preview the changes, and they're applied only if you approve. Color codes and YAML structure stay intact."
+      },
+      {
+        "q": "Why are Turkish characters broken?",
+        "keys": [
+          "turkish",
+          "character",
+          "broken",
+          "encoding",
+          "utf",
+          "mojibake",
+          "letters"
+        ],
+        "answer": "It finds broken Turkish characters like Ã¼ or ÅŸ and wrongly encoded files. Only fixes that can be made safely are suggested, with a before/after preview. When it isn't sure, it leaves the file alone and suggests checking it manually."
+      },
+      {
+        "q": "My server lags, what can I do?",
+        "keys": [
+          "optimiz",
+          "performance",
+          "lag",
+          "tps",
+          "speed",
+          "slow",
+          "ram",
+          "freeze"
+        ],
+        "answer": "The optimization section looks at server.properties, Paper/Spigot settings and JVM flags and makes suggestions. None are applied automatically; each one lists its expected effect, risk and how to undo it. Settings that change gameplay are marked separately."
+      },
+      {
+        "q": "Can two anticheats run together?",
+        "keys": [
+          "anticheat",
+          "vulcan",
+          "matrix",
+          "grim",
+          "spartan",
+          "cheat"
+        ],
+        "answer": "It detects installed anticheat plugins and comments on things like several running at once, version compatibility and false-positive risk. These are observations, not verdicts, and it stays quiet about settings it isn't sure about."
+      },
+      {
+        "q": "Can I edit while the server is running?",
+        "keys": [
+          "running",
+          "while running",
+          "is running",
+          "server running",
+          "session",
+          "~online",
+          "~stop"
+        ],
+        "answer": "If you edit files while the server is running, your changes can be overwritten when it shuts down. The app detects a running server and pauses writes while it's up. Just stop the server before applying changes."
+      },
+      {
+        "q": "Can I scan a hosted server?",
+        "keys": [
+          "sftp",
+          "remote",
+          "hosting",
+          "panel",
+          "ftp",
+          "pterodactyl",
+          "vps"
+        ],
+        "answer": "You can connect to a hosted server over SFTP and run the same scan. At first the connection is read-only and files are only read for analysis. Writing to remote servers will come as a separate approval step."
+      },
+      {
+        "q": "Is my data sent anywhere?",
+        "keys": [
+          "internet",
+          "data",
+          "privacy",
+          "send",
+          "telemetry",
+          "tracking",
+          "network"
+        ],
+        "answer": "Your file contents are never sent over the internet. The app only goes online to check for updates and rule packs, and you can turn that off in Settings. Anonymous usage data is off by default."
+      },
+      {
+        "q": "Windows shows a warning, what now?",
+        "keys": [
+          "smartscreen",
+          "windows warning",
+          "sign",
+          "defender",
+          "antivirus",
+          "protected",
+          "won't open"
+        ],
+        "answer": "Because the app is free and open source it doesn't use a paid code-signing certificate, so Windows may show \"Windows protected your PC\" the first time. Click \"More info\" › \"Run anyway\". You can verify the download against the SHA256 value on the GitHub release page."
+      },
+      {
+        "q": "Is it free?",
+        "keys": [
+          "price",
+          "cost",
+          "free",
+          "open source",
+          "license",
+          "github",
+          "source code",
+          "pay"
+        ],
+        "answer": "It's completely free and open source (MIT license). Anyone can read the source code on GitHub and contribute."
+      },
+      {
+        "q": "How do I change the language?",
+        "keys": [
+          "language",
+          "english",
+          "turkish ui",
+          "change language",
+          "switch language"
+        ],
+        "answer": "Use the TR/EN toggle in the top bar or Settings › General › Language. It switches instantly, no restart needed. The language you picked in the installer is used on first launch."
+      },
+      {
+        "q": "Where do I change the theme?",
+        "keys": [
+          "theme",
+          "dark mode",
+          "light mode",
+          "appearance",
+          "animation",
+          "glow",
+          "motion",
+          "color"
+        ],
+        "answer": "The app uses a dark theme. Settings › General has the interface size, the background light and Reduce motion. Open Settings with the gear icon at the top."
+      },
+      {
+        "q": "Which server types are supported?",
+        "keys": [
+          "paper",
+          "spigot",
+          "purpur",
+          "folia",
+          "bukkit",
+          "velocity",
+          "bungee",
+          "forge",
+          "fabric",
+          "version",
+          "support"
+        ],
+        "answer": "It recognizes Paper, Spigot, Purpur and Folia servers; checks for Velocity and BungeeCord proxies are coming. The server type and Minecraft version are detected automatically during the scan."
+      },
+      {
+        "q": "Does it run on Mac or Linux?",
+        "keys": [
+          "mac",
+          "macos",
+          "linux",
+          "ubuntu",
+          "operating system",
+          "platform"
+        ],
+        "answer": "Yes. There's an installer (.exe) for Windows, a .dmg for macOS, and AppImage and .deb packages for Linux, all on the GitHub releases page."
+      },
+      {
+        "q": "How do updates work?",
+        "keys": [
+          "update",
+          "new version",
+          "rule pack",
+          "rule database",
+          "upgrade"
+        ],
+        "answer": "Use \"Check for updates\" under Settings › About; with automatic checks on, the app looks by itself at launch. If there's a new version, \"Update\" downloads and installs it. The package signature is verified, and a file whose signature doesn't match is never installed."
+      },
+      {
+        "q": "How do I share the report?",
+        "keys": [
+          "share",
+          "report",
+          "export",
+          "forum",
+          "screenshot"
+        ],
+        "answer": "The \"Share report\" button on the result screen exports the report as a single file. IP addresses, usernames, file paths and passwords are masked, so it's safe to post on a forum or support channel."
+      },
+      {
+        "q": "What if the app crashes?",
+        "keys": [
+          "error",
+          "crash",
+          "not working",
+          "bug",
+          "problem",
+          "issue",
+          "broken app"
+        ],
+        "answer": "Close and reopen the app first. If it keeps happening, export the log from Settings › Safety & privacy › Export diagnostics log and share it on our community server; personal paths are masked automatically. Your files are never left half-written."
+      },
+      {
+        "q": "How can I reach you?",
+        "keys": [
+          "contact",
+          "reach",
+          "support",
+          "discord",
+          "human",
+          "staff",
+          "talk"
+        ],
+        "answer": "If something isn't covered here, join our Discord server using the Community link below. For more about Foxivo, visit foxivo.com.tr."
+      },
+      {
+        "q": "Who made this app?",
+        "keys": [
+          "foxivo",
+          "who made",
+          "developer",
+          "launcher",
+          "author"
+        ],
+        "answer": "The app is developed by Foxivo. Check out foxivo.com.tr for Foxivo's Minecraft launcher solutions and other tools."
+      },
+      {
+        "q": "",
+        "keys": [
+          "hello",
+          "hi",
+          "hey",
+          "good morning",
+          "howdy"
+        ],
+        "answer": "Hi! How can I help? Ask about scanning, backups, security or settings."
+      },
+      {
+        "q": "",
+        "keys": [
+          "thank",
+          "thx",
+          "cheers",
+          "appreciate"
+        ],
+        "answer": "You're welcome! I'm here if anything else comes up."
+      }
+    ],
+    "newChat": "New chat",
+    "related": "You might also ask",
+    "thinking": "Typing"
+  },
+  "foxivo": {
+    "poweredBy": "Powered by"
+  },
+  "tray": {
+    "show": "Open",
+    "quit": "Quit"
+  },
+  "update": {
+    "available": "New version ready: {v}",
+    "availableShort": "New version available: {v}",
+    "downloading": "Downloading {v}…",
+    "install": "Update",
+    "later": "Later",
+    "check": "Check for updates",
+    "checking": "Checking…",
+    "latest": "You're on the latest version",
+    "error": "Couldn't reach the update server"
+  }
+}

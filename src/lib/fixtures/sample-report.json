@@ -1,0 +1,242 @@
+{
+  "root": "C:/Servers/ornek-survival",
+  "name": "ornek-survival",
+  "platform": "Paper",
+  "mcVersion": "1.21.1",
+  "plugins": [
+    {
+      "file": "EssentialsX-2.21.0.jar",
+      "name": "Essentials",
+      "version": "2.21.0",
+      "apiVersion": "1.13",
+      "authors": [
+        "Zenexer",
+        "md_5"
+      ],
+      "depend": [],
+      "website": "https://essentialsx.net",
+      "official": null
+    },
+    {
+      "file": "LuckPerms-Bukkit-5.4.jar",
+      "name": "LuckPerms",
+      "version": "5.4.141",
+      "apiVersion": "1.13",
+      "authors": [
+        "Luck"
+      ],
+      "depend": [],
+      "website": "https://luckperms.net",
+      "official": null
+    },
+    {
+      "file": "Matrix-7.6.jar",
+      "name": "Matrix",
+      "version": "7.6.0",
+      "apiVersion": null,
+      "authors": [],
+      "depend": [],
+      "website": null,
+      "official": null
+    },
+    {
+      "file": "ShopX-1.4.jar",
+      "name": "ShopX",
+      "version": "1.4",
+      "apiVersion": "1.20",
+      "authors": [
+        "unknown"
+      ],
+      "depend": [],
+      "website": null,
+      "official": null
+    },
+    {
+      "file": "TAB-4.1.jar",
+      "name": "TAB",
+      "version": "4.1.2",
+      "apiVersion": "1.13",
+      "authors": [],
+      "depend": [],
+      "website": "https://github.com/NEZNAMY/TAB",
+      "official": {
+        "source": "Modrinth",
+        "version": "4.1.2",
+        "url": "https://modrinth.com/project/tab"
+      }
+    },
+    {
+      "file": "Vulcan-2.8.6.jar",
+      "name": "Vulcan",
+      "version": "2.8.6",
+      "apiVersion": "1.13",
+      "authors": [],
+      "depend": [],
+      "website": null,
+      "official": null
+    }
+  ],
+  "security": [
+    {
+      "plugin": "ShopX",
+      "file": "ShopX-1.4.jar",
+      "rule": "execAndDownload",
+      "severity": "high",
+      "detail": "cdn-update.xyz",
+      "official": false
+    },
+    {
+      "plugin": "ShopX",
+      "file": "ShopX-1.4.jar",
+      "rule": "chatOp",
+      "severity": "medium",
+      "detail": "dev.shopx.Hook",
+      "official": false
+    },
+    {
+      "plugin": "TAB",
+      "file": "TAB-4.1.jar",
+      "rule": "unknownDomain",
+      "severity": "info",
+      "detail": "pastes.dev",
+      "official": true
+    }
+  ],
+  "placeholders": [
+    {
+      "value": "Sunucu Adı",
+      "count": 2,
+      "files": [
+        "plugins/Essentials/config.yml",
+        "plugins/TAB/config.yml"
+      ],
+      "detected": false
+    },
+    {
+      "value": "discord.gg/ornek",
+      "count": 2,
+      "files": [
+        "plugins/Essentials/config.yml",
+        "plugins/TAB/config.yml"
+      ],
+      "detected": false
+    },
+    {
+      "value": "sunucuadiniz.com",
+      "count": 2,
+      "files": [
+        "plugins/Essentials/config.yml",
+        "server.properties"
+      ],
+      "detected": false
+    },
+    {
+      "value": "magaza.sunucuadiniz.com",
+      "count": 1,
+      "files": [
+        "plugins/TAB/config.yml"
+      ],
+      "detected": false
+    },
+    {
+      "value": "play.sunucuadiniz.com",
+      "count": 1,
+      "files": [
+        "plugins/TAB/config.yml"
+      ],
+      "detected": false
+    }
+  ],
+  "encoding": [
+    {
+      "file": "plugins/DeluxeMenus/menus/ana.yml",
+      "kind": "legacy",
+      "lines": 3,
+      "before": "menu_title: '&8Ana Men� - Se�im Yap'",
+      "after": "menu_title: '&8Ana Menü - Seçim Yap'"
+    },
+    {
+      "file": "plugins/Essentials/messages_tr.properties",
+      "kind": "mojibake",
+      "lines": 2,
+      "before": "kickDefault=Sunucudan atÄ±ldÄ±n.",
+      "after": "kickDefault=Sunucudan atıldın."
+    }
+  ],
+  "optimize": [
+    {
+      "id": "viewDistance",
+      "file": "server.properties",
+      "key": "view-distance",
+      "current": "12",
+      "recommended": "8",
+      "gameplay": false,
+      "applicable": true
+    },
+    {
+      "id": "simulationDistance",
+      "file": "server.properties",
+      "key": "simulation-distance",
+      "current": "10",
+      "recommended": "6",
+      "gameplay": true,
+      "applicable": true
+    },
+    {
+      "id": "syncChunkWrites",
+      "file": "server.properties",
+      "key": "sync-chunk-writes",
+      "current": "true",
+      "recommended": "false",
+      "gameplay": false,
+      "applicable": true
+    },
+    {
+      "id": "aikarFlags",
+      "file": "start.bat",
+      "key": "JVM",
+      "current": "-",
+      "recommended": "-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true",
+      "gameplay": false,
+      "applicable": false
+    }
+  ],
+  "anticheats": [
+    {
+      "name": "Matrix",
+      "file": "Matrix-7.6.jar",
+      "version": "7.6.0"
+    },
+    {
+      "name": "Vulcan",
+      "file": "Vulcan-2.8.6.jar",
+      "version": "2.8.6"
+    }
+  ],
+  "running": false,
+  "score": 54,
+  "filesScanned": 8,
+  "durationMs": 9,
+  "breakdown": [
+    {
+      "id": "security",
+      "points": 21
+    },
+    {
+      "id": "optimize",
+      "points": 9
+    },
+    {
+      "id": "replace",
+      "points": 6
+    },
+    {
+      "id": "anticheat",
+      "points": 6
+    },
+    {
+      "id": "encoding",
+      "points": 4
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Sunucu Analiz - Foxivo",
+        "width": 1280,
+        "height": 840,
+        "minWidth": 1024,
+        "minHeight": 720,
+        "center": true,
+        "decorations": true,
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "trafficLightPosition": { "x": 20, "y": 26 },
+        "backgroundColor": "#121215",
+        "dragDropEnabled": true
+      }
+    ]
+  }
+}

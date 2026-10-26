@@ -1,0 +1,23 @@
+[workspace]
+members = ["crates/core", "crates/cli", "src-tauri"]
+resolver = "3"
+
+[workspace.package]
+version = "1.0.0"
+edition = "2024"
+license = "MIT"
+authors = ["Foxivo"]
+repository = "https://github.com/foxivosoftware/sunucu-analiz-foxivo"
+
+# no panicking shortcuts anywhere, every error goes back to the UI as a Result
+[workspace.lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

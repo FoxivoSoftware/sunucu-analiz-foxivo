@@ -1,0 +1,22 @@
+node_modules/
+dist/
+target/
+src-tauri/gen/schemas/
+*.log
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# local notes and tooling
+CLAUDE.md
+PLAN.md
+README-YUKLE.txt
+design/
+.claude/
+.impeccable/
+
+# signing keys never belong in the repo
+*.key
+*.key.pub

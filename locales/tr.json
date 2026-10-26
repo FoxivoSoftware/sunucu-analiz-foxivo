@@ -1,0 +1,736 @@
+{
+  "app": {
+    "name": "Sunucu Analiz - Foxivo"
+  },
+  "titlebar": {
+    "home": "Ana ekran",
+    "language": "Dil",
+    "settings": "Ayarlar",
+    "minimize": "Küçült",
+    "maximize": "Büyüt",
+    "restore": "Önceki boyut",
+    "close": "Kapat"
+  },
+  "home": {
+    "title": "Sunucunu birlikte",
+    "titleAccent": "kontrol edelim",
+    "subtitle": "Klasörü seç, saniyeler içinde neyin düzeltilmesi gerektiğini göster.",
+    "drop": "Sunucu klasörünü buraya sürükle",
+    "dropActive": "Bırak, hemen bakalım",
+    "dropHint": "İçinde server.properties ve plugins olan ana klasör",
+    "choose": "Klasör seç",
+    "pickTitle": "Sunucu klasörünü seç",
+    "scanning": "Taranıyor…",
+    "scanningHint": "Eklentiler ve ayar dosyaları okunuyor. Hiçbir şey değiştirilmiyor.",
+    "recent": "{name} klasörünü tekrar tara",
+    "note": "Tarama salt okunurdur, hiçbir dosya değişmez.",
+    "steps": {
+      "pick": "Klasörü seç",
+      "pickHint": "Sunucunun ana klasörünü sürükle ya da seç.",
+      "review": "Raporu incele",
+      "reviewHint": "Sorunlar önem sırasına göre listelenir.",
+      "fix": "Onayla, düzelt",
+      "fixHint": "Önce yedek alınır, sonra yalnızca onayladığın değişir."
+    },
+    "phase": {
+      "plugins": "Eklentiler inceleniyor ({done}/{total})",
+      "verify": "Resmi sürümlerle karşılaştırılıyor",
+      "files": "Ayar dosyaları okunuyor ({done}/{total})"
+    }
+  },
+  "modules": {
+    "security": "Güvenlik taraması",
+    "replace": "Örnek değerleri değiştir",
+    "encoding": "Türkçe karakterleri onar",
+    "optimize": "Sunucuyu optimize et",
+    "anticheat": "Anticheat yorumu",
+    "backups": "Yedekler ve geri alma"
+  },
+  "cards": {
+    "high": "{n} yüksek",
+    "findings": "{n} bulgu",
+    "clean": "Temiz",
+    "securityHint": "{file} için inceleme önerilir",
+    "securityClean": "{n} eklentide şüpheli bulgu yok",
+    "spots": "{n} yer",
+    "replaceHint": "{value} ve {n} değer daha",
+    "replaceClean": "Örnek değer bulunmadı",
+    "files": "{n} dosya",
+    "encodingHint": "Bozulmalar güvenle düzeltilebilir",
+    "encodingClean": "Bozuk karakter yok",
+    "tips": "{n} öneri",
+    "good": "İyi",
+    "optimizeHint": "Hiçbiri kendiliğinden uygulanmaz",
+    "optimizeClean": "Ayarlar yerinde görünüyor",
+    "systems": "{n} sistem",
+    "none": "Yok",
+    "anticheatMany": "{a} ve {b} birlikte çalışıyor",
+    "anticheatNone": "Anticheat yok · öneri hazır",
+    "ready": "Hazır",
+    "backupsHint": "Her değişiklikten önce otomatik",
+    "securityVerified": "{n}/{total} eklenti resmi sürümle doğrulandı"
+  },
+  "result": {
+    "plugins": "{n} eklenti",
+    "title": "{n} şeye birlikte",
+    "titleAccent": "bakmamız gerek",
+    "cleanTitle": "Her şey",
+    "cleanAccent": "yolunda görünüyor",
+    "subtitle": "Taramada hiçbir dosya değiştirilmedi.",
+    "running": "Sunucu şu anda çalışıyor. Raporu inceleyebilirsin ama düzeltme yapmadan önce sunucuyu kapatman gerekiyor.",
+    "nextLabel": "İlk adım",
+    "next": {
+      "security": "Güvenlik bulgularına göz at",
+      "replace": "Örnek değerleri kendi bilgilerinle değiştir",
+      "encoding": "Bozuk Türkçe karakterleri onar",
+      "optimize": "Performans önerilerine bak",
+      "anticheat": "Anticheat çakışmasını incele"
+    },
+    "start": "Başla",
+    "readonlyTitle": "Salt okunur",
+    "readonly": "onayın olmadan değişmez",
+    "another": "Başka klasör",
+    "share": "Raporu kaydet",
+    "raise": "Skoru nasıl yükseltirim? (+{n})",
+    "raiseTitle": "Şu an {score}. Aşağıdakileri düzeltirsen {max} olur.",
+    "fix": "Düzelt",
+    "raiseTip": {
+      "security": "Şüpheli eklentileri incele, gerekirse resmi sürümle değiştir",
+      "replace": "Örnek değerleri kendi bilgilerinle değiştir",
+      "encoding": "Bozuk Türkçe karakterleri onar",
+      "optimize": "Performans önerilerini uygula",
+      "anticheat": "Tek bir anticheat kullan"
+    }
+  },
+  "module": {
+    "back": "Rapora dön",
+    "why": "Neden önemli?",
+    "hide": "Gizle"
+  },
+  "sev": {
+    "high": "Yüksek",
+    "medium": "Orta",
+    "low": "Düşük",
+    "info": "Bilgi"
+  },
+  "security": {
+    "lead": "{n} eklenti çalıştırılmadan incelendi. Bulgular kesin hüküm değildir; incelemen önerilir.",
+    "rules": {
+      "hiddenLoader": {
+        "title": "Gizlenmiş kod yükleyebilen yapı",
+        "why": "Aynı kod parçasında hem Base64 ile kodlanmış veriyi çözen hem de bu veriyi sınıf olarak tanımlayabilen (defineClass) çağrılar var. Zararlı eklentiler kodlarını bu şekilde gizler; bazı lisans ve koruma sistemleri de benzer yöntem kullanır. Eklentiyi güvendiğin kaynaktan indirdiğinden emin değilsen resmi sürümle değiştir."
+      },
+      "remoteCode": {
+        "title": "Uzaktan jar yükleyebilen yapı",
+        "why": "Aynı kod parçasında bir sınıf yükleyici (URLClassLoader) ve tanınmayan bir adresteki .jar ya da .class dosyası birlikte geçiyor. Bazı eklentiler kütüphanelerini böyle indirir; adres tanıdık değilse eklentinin kaynağını doğrula."
+      },
+      "execAndDownload": {
+        "title": "Komut çağrısı ve tanınmayan adres bir arada",
+        "why": "Aynı kod parçasında hem sistem komutu çalıştırma çağrısı (Runtime.exec veya ProcessBuilder) hem de tanınmayan bir adres var. Bu ikisinin aynı yerde bulunması, dışarıdan bir şey alıp çalıştırma riskine işaret eder. Kodun gerçekte ne yaptığını tarama tek başına bilemez; incelemen önerilir."
+      },
+      "chatOp": {
+        "title": "Sohbet dinleyen kodda OP verme",
+        "why": "Aynı kod parçası hem sohbet veya komut olaylarını dinliyor hem de bir oyuncuya OP veren setOp çağrısını içeriyor. Gizli bir komutla yetki veren arka kapılar bu yapıdadır; yönetim eklentilerinde meşru olarak da bulunabilir. Bu davranışın eklentinin belgelerinde geçip geçmediğini kontrol et."
+      },
+      "jarWriter": {
+        "title": "Jar dosyası yazabilen kod",
+        "why": "Bu kod parçası yeni bir jar/zip dosyası oluşturabiliyor ve içinde .jar geçen bir yol var. Diğer eklentilere bulaşarak yayılan zararlılar bu yöntemi kullanır; bazı güncelleyiciler ve dışa aktarma araçları da benzer kod içerir."
+      },
+      "exec": {
+        "title": "Sistem komutu çağrısı içeriyor",
+        "why": "Kodda Runtime.exec ya da ProcessBuilder çağrısı var. Birçok eklenti bunu işletim sistemi bilgisi almak gibi zararsız işler için kullanır; tek başına risk göstergesi değildir ve skoru düşürmez."
+      },
+      "webhook": {
+        "title": "Discord webhook adresi içeriyor",
+        "why": "Eklentinin kodunda bir Discord webhook adresi geçiyor, yani Discord'a mesaj gönderebilir. Bildirim eklentilerinde normaldir; tanımadığın bir eklentideyse sunucu bilgilerinin dışarı gönderilebileceğini unutma."
+      },
+      "unknownDomain": {
+        "title": "Tanınmayan adres içeriyor",
+        "why": "Eklentinin kodunda yaygın eklenti kaynakları arasında olmayan bir adres geçiyor. Bu, eklentinin o adrese bağlandığı anlamına gelmez; çoğu zaman belge, destek ya da istatistik bağlantısıdır. Skoru düşürmez."
+      },
+      "obfuscated": {
+        "title": "Yoğun gizlenmiş kod",
+        "why": "Sınıf adlarının büyük kısmı okunamaz hale getirilmiş. Ücretli eklentilerde sık görülür ve tek başına zararlı değildir, ama içeriğin incelenmesini zorlaştırır."
+      }
+    },
+    "disclaimer": "Bu tarama bilinen şüpheli kalıpları arar. Bulgu yoksa \"şüpheli bulgu görülmedi\" demektir, \"kesinlikle güvenli\" değil.",
+    "cleanTitle": "Şüpheli bulgu görülmedi",
+    "cleanText": "{n} eklentide bilinen şüpheli kalıpların hiçbiri bulunmadı.",
+    "cleanList": "Temiz görünen eklentiler ({n})",
+    "officialTag": "Resmi sürüm",
+    "officialWhy": "Bu dosya geliştiricinin yayınladığı resmi dosyayla birebir aynı; yani bu davranış eklentinin kendi kodunda var, sonradan eklenmemiş.",
+    "verifiedTitle": "{n}/{total} eklenti resmi sürümle birebir aynı",
+    "verifiedText": "Bu dosyalar Modrinth'teki resmi yüklemelerle bayt bayt eşleşiyor, yani kimse değiştirmemiş. Sahte veya içine kod eklenmiş bir kopya bu eşleşmeyi geçemez.",
+    "verifyOff": "Resmi sürüm doğrulaması kapalı. Ayarlar'dan açarsan eklentiler Modrinth'teki resmi dosyalarla karşılaştırılır.",
+    "notes": "Bilgi notları ({n})",
+    "pluginList": "Tüm eklentiler ({n})",
+    "official": "{source} resmi",
+    "unverified": "Doğrulanamadı",
+    "unverifiedWhy": "\"Doğrulanamadı\" kötü anlamına gelmez: eklenti Modrinth'te olmayabilir ya da başka bir siteden (SpigotMC, geliştiricinin sitesi) indirilmiş olabilir. Bu eklentileri güvendiğin kaynaktan indirdiğinden emin ol.",
+    "search": "Resmi sürümü ara",
+    "searchHint": "Eklentinin resmi sayfasını Modrinth'te aç",
+    "advice": "Önerilen: Eklentiyi resmi sayfasından yeniden indirip bu dosyayla değiştir. Emin olamazsan istemi kopyalayıp bir yapay zekâ asistanına danışabilirsin; son karar senin.",
+    "ai": {
+      "button": "Yapay zekâya sor",
+      "hint": "Bu bulgu için hazır bir soru kopyalar. Uygulama hiçbir şey göndermez.",
+      "copied": "İstem kopyalandı. ChatGPT, Claude veya Gemini gibi bir asistana yapıştırabilirsin.",
+      "prompt": "Minecraft sunucumdaki bir eklenti için güvenlik taraması uyarı verdi. Bunun yanlış alarm (false positive) olup olmadığını anlamama yardım eder misin?\n\nSunucu: {server}\nEklenti: {plugin} (dosya: plugins/{file})\nTaramanın gördükleri:\n{findings}\n\nTarama jar dosyasını çalıştırmadan, sınıf dosyalarındaki metot çağrılarına ve içindeki adreslere bakarak yapıldı. Dosya, Modrinth'teki resmi sürümlerle eşleşmedi ya da orada bulunamadı.\n\nLütfen:\n1. Bu davranışların bu eklenti için olağan olup olmadığını açıkla.\n2. Eklentinin resmi indirme kaynağını ve dosyanın gerçek olduğunu nasıl doğrulayabileceğimi söyle.\n3. Sunucuyu durdurmadan ya da veri kaybetmeden atabileceğim güvenli adımları sırala.\nEmin olmadığın konularda tahmin yürütme, açıkça belirt."
+    },
+    "updates": "Eklenti güncellemeleri ({n})",
+    "updatesHint": "Yalnızca kararlı sürümler ve senin sunucu yazılımı ile Minecraft sürümünle uyumlu olanlar gösterilir. Güncellemeden önce eklentinin değişiklik notlarına göz at.",
+    "download": "İndir"
+  },
+  "replace": {
+    "lead": "Hazır paketten kalan örnek değerler. Yerine yazmak istediğini gir, önizle, onaylarsan değişsin.",
+    "spots": "{n} yer · {files} dosya",
+    "placeholder": "Yeni değer",
+    "newValue": "{value} yerine yazılacak değer",
+    "hint": "Boş bıraktığın değerler değişmez. Renk kodları (&6, §a) ve dosya yapısı korunur. Girdiklerin bir sonraki sunucu için hatırlanır.",
+    "filled": "{n}/{total} değer dolduruldu",
+    "preview": "Önizle",
+    "cleanTitle": "Örnek değer kalmadı",
+    "cleanText": "Paketteki bilinen örnek değerlerin hiçbiri bulunmadı.",
+    "planTitle": "Örnek değerleri değiştir",
+    "detected": "Paketten tespit edildi"
+  },
+  "encoding": {
+    "lead": "Bozulmuş Türkçe karakter içeren dosyalar. Yalnızca güvenle geri çevrilebilen bozulmalar düzeltilir.",
+    "kind": {
+      "mojibake": "Bozuk karakter",
+      "legacy": "Eski kodlama (Windows-1254)"
+    },
+    "lines": "{n} satır",
+    "hint": "Kırmızı satır şu anki hali, yeşil satır düzeltilmiş hali. İstemediğin dosyanın işaretini kaldır.",
+    "selected": "{n} dosya seçili",
+    "fix": "Seçilenleri onar",
+    "cleanTitle": "Bozuk karakter yok",
+    "cleanText": "Tüm dosyalar düzgün okunuyor.",
+    "planTitle": "Türkçe karakterleri onar"
+  },
+  "optimize": {
+    "lead": "Ayar dosyalarına göre öneriler. Hiçbiri kendiliğinden uygulanmaz; istediklerini seç.",
+    "tips": {
+      "viewDistance": {
+        "title": "Görüş mesafesini düşür",
+        "why": "Oyuncu başına yüklenen chunk sayısı azalır, RAM ve işlemci yükü belirgin düşer. Oyuncular uzak araziyi biraz daha geç görür."
+      },
+      "simulationDistance": {
+        "title": "Simülasyon mesafesini düşür",
+        "why": "Oyunculardan uzak bölgelerde mob ve redstone hesaplamaları durur. Uzaktaki çiftlikler yavaşlayabilir, bu yüzden oyunu etkileyen öneri olarak işaretli."
+      },
+      "syncChunkWrites": {
+        "title": "Eşzamanlı chunk yazmayı kapat",
+        "why": "Chunk'lar diske arka planda yazılır, kayıt sırasındaki takılmalar azalır. Paper ve türevlerinde güvenli kabul edilir."
+      },
+      "aikarFlags": {
+        "title": "Önerilen JVM bayraklarını kullan",
+        "why": "Başlatma betiğinde çöp toplayıcı ayarı yok. Aşağıdaki bayrakları -jar'dan önce eklemek anlık takılmaları azaltır. Betikler sunucudan sunucuya farklı olduğu için bunu senin yerine yapmıyoruz."
+      }
+    },
+    "gameplay": "Oyunu etkiler",
+    "copy": "Bayrakları kopyala",
+    "copied": "Bayraklar panoya kopyalandı",
+    "hint": "Uygulanan her ayar yedeklenir; Yedekler ekranından tek tıkla geri alabilirsin.",
+    "selected": "{n} öneri seçili",
+    "apply": "Seçilenleri uygula",
+    "cleanTitle": "Ayarlar yerinde görünüyor",
+    "cleanText": "server.properties ve başlatma betiğinde önerilecek bir şey bulunmadı.",
+    "planTitle": "Optimizasyon önerilerini uygula"
+  },
+  "anticheat": {
+    "lead": "Yüklü anticheat eklentileri ve birlikte çalışmalarıyla ilgili gözlemler.",
+    "manyTitle": "Birden fazla anticheat çalışıyor: {names}",
+    "manyWhy": "Aynı hareketleri iki ayrı sistem denetleyince haksız tespit (yanlış ban) ve performans kaybı riski artar. Çoğu sunucu tek bir anticheat ile daha kararlı çalışır.",
+    "found": "Bulunan anticheat eklentileri",
+    "tipTitle": "Genel öneri",
+    "tip": "Otomatik cezaları önce uyarı ya da kick ile başlatıp bir süre gözlemlemek, gecikmesi yüksek oyuncuların haksız yere banlanmasını önler.",
+    "disclaimer": "Bunlar gözlemdir, kesin hüküm değildir. Sürüm uyumu için eklentinin kendi sayfasını kontrol et.",
+    "noneTitle": "Anticheat görünmüyor",
+    "noneText": "Yüklü bir anticheat eklentisi bulunmadı. Zorunlu değil, ama hileye karşı koruma istiyorsan aşağıdaki öneriye bakabilirsin.",
+    "suggestTitle": "Önerilen anticheat",
+    "free": "Ücretsiz · açık kaynak",
+    "grim": "Topluluk tarafından yaygın kullanılan, ücretsiz ve açık kaynaklı bir anticheat. Oyuncunun hareketini sunucu tarafında simüle ederek kontrol eder; amacı haksız tespitleri en aza indirmektir. Kurmadan önce desteklediği Minecraft sürümlerini sayfasından kontrol et.",
+    "openPage": "Resmi sayfayı aç",
+    "others": "Ücretli seçenekler arasında Vulcan ve Polar da sık tercih edilir. Hangisi olursa olsun tek bir anticheat kullan ve cezaları önce uyarıyla başlat.",
+    "ai": {
+      "many": "Minecraft sunucumda birden fazla anticheat eklentisi aynı anda yüklü ve hangisini tutmam gerektiğine karar vermek istiyorum.\n\nSunucu: {server}\nYüklü anticheatler: {names}\nToplam eklenti sayısı: {plugins}\n\nLütfen:\n1. Bu anticheatlerin birlikte çalışmasının riskleri neler (yanlış ban, performans)?\n2. Benim sunucum için hangisini tutmak daha mantıklı olur ve neden?\n3. Diğerini oyuncuları etkilemeden ve sunucuyu bozmadan nasıl devre dışı bırakırım?\n4. Haksız ban olmaması için önerdiğin temel ayarlar neler?\nEmin olmadığın yerde tahmin yürütme, açıkça belirt.",
+      "choose": "Minecraft sunucum için bir anticheat seçmek istiyorum.\n\nSunucu: {server}\nYüklü eklentiler: {plugins}\n\nLütfen bu sunucu yazılımı ve sürümüyle uyumlu, güvenilir anticheat seçeneklerini karşılaştır (ücretsiz ve ücretli). Her biri için resmi indirme kaynağını, bilinen uyumsuzlukları ve haksız ban yaşanmaması için başlangıç ayarlarını yaz. Sunucunun çalışmasını engellemeyecek adımlar öner. Emin olmadığın yerde tahmin yürütme, açıkça belirt."
+    }
+  },
+  "backups": {
+    "lead": "Her değişiklikten önce alınan yedekler. İstediğini tek tıkla geri yükleyebilirsin.",
+    "loading": "Yedekler okunuyor…",
+    "label": {
+      "replace": "Örnek değer değişikliği",
+      "encoding": "Türkçe karakter onarımı",
+      "optimize": "Optimizasyon ayarları"
+    },
+    "files": "{n} dosya",
+    "wasRestored": "Geri yüklendi",
+    "restore": "Geri yükle",
+    "restored": "{n} dosya eski haline döndü",
+    "emptyTitle": "Henüz yedek yok",
+    "emptyText": "Bir düzeltme uyguladığında, değişiklikten hemen önce otomatik olarak yedek alınır ve burada görünür.",
+    "where": "Yedek konumu: {dir} · {days} gün saklanır",
+    "always": "Yedekleme her zaman açık",
+    "openDir": "Klasörü aç",
+    "confirmTitle": "Bu yedeği geri yükle"
+  },
+  "plan": {
+    "summary": "{files} dosyada {changes} değişiklik yapılacak.",
+    "changes": "{n} değişiklik",
+    "more": "ve {n} dosya daha",
+    "safety": "Uygulamadan önce otomatik yedek alınır. Bir sorun olursa değişiklik kendiliğinden geri alınır.",
+    "cancel": "Vazgeç",
+    "confirm": "Onayla ve uygula",
+    "applying": "Uygulanıyor…",
+    "nothing": "Değiştirilecek bir şey bulunmadı.",
+    "done": "{n} dosya güncellendi, yedek alındı."
+  },
+  "errors": {
+    "desktop": "Bu işlem yalnızca masaüstü uygulamasında çalışır.",
+    "notServer": "Bu klasör bir Minecraft sunucusuna benzemiyor. İçinde server.properties veya plugins olan ana klasörü seç.",
+    "notFound": "Klasör bulunamadı.",
+    "running": "Sunucu çalışıyor. Değişiklik yapmadan önce sunucuyu kapat.",
+    "invalid": "Değişiklik dosyayı bozacağı için uygulanmadı. Hiçbir dosya değişmedi.",
+    "protected": "Dünya, oyuncu verisi ve eklenti dosyalarına asla yazılmaz.",
+    "generic": "Bir sorun oluştu: {msg}",
+    "clipboard": "Panoya kopyalanamadı."
+  },
+  "share": {
+    "title": "Sunucu raporu",
+    "score": "Sağlık skoru",
+    "date": "Tarih",
+    "summary": "Özet",
+    "plugins": "Eklentiler",
+    "saved": "Rapor kaydedildi. Dosya yolları ve kullanıcı adı gizlendi."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "back": "Geri",
+    "autosave": "Değişiklikler anında kaydedilir",
+    "general": "Genel",
+    "language": "Dil",
+    "languageHint": "Arayüz dili",
+    "scale": "Arayüz boyutu",
+    "scaleHint": "Pencereye göre ayarlanır",
+    "scaleCompact": "Küçük",
+    "scaleAuto": "Otomatik",
+    "scaleLarge": "Büyük",
+    "glow": "Arka plan ışığı",
+    "glowHint": "Yavaş hareket eden renkli ışık",
+    "reduceMotion": "Hareketi azalt",
+    "reduceMotionHint": "Animasyonları en aza indir",
+    "safety": "Güvenlik ve gizlilik",
+    "approval": "Her değişiklik için onay",
+    "approvalHint": "Onay olmadan hiçbir dosya değişmez",
+    "alwaysOn": "Her zaman açık",
+    "autoBackup": "Otomatik yedek",
+    "autoBackupHint": "Her değişiklikten önce alınır",
+    "diagnostics": "Tanılama günlüğü",
+    "diagnosticsHint": "Destek için, kişisel yollar gizlenir",
+    "export": "Dışa aktar",
+    "backups": "Yedekleme",
+    "backupDir": "Yedek konumu",
+    "backupDirHint": "Sunucu klasörünün dışında",
+    "retention": "Saklama süresi",
+    "retentionHint": "Eski yedekler açılışta silinir",
+    "days": "{n} gün",
+    "openBackups": "Yedek klasörü",
+    "openBackupsHint": "Dosya gezgininde aç",
+    "open": "Aç",
+    "about": "Hakkında",
+    "version": "Sürüm",
+    "madeBy": "Geliştiren",
+    "verifyOnline": "Resmi sürüm doğrulaması",
+    "verifyOnlineHint": "Yalnızca dosya özeti Modrinth'e gönderilir",
+    "closeToTray": "Arka planda çalış",
+    "closeToTrayHint": "Kapatınca simge durumunda kalır",
+    "autoUpdate": "Otomatik güncelleme denetimi",
+    "autoUpdateHint": "Açılışta GitHub'daki yeni sürüme bakar",
+    "detectRunning": "Çalışan sunucuyu algıla",
+    "detectRunningHint": "Sunucu açıkken yazma yapılmaz",
+    "versionLine": "Kural paketi {rules} · MIT lisansı"
+  },
+  "help": {
+    "open": "Yardım",
+    "close": "Yardımı kapat",
+    "closeShort": "Kapat",
+    "title": "Yardım",
+    "subtitle": "Uygulama hakkında sorularını yanıtlar",
+    "greeting": "Merhaba! Ben uygulamanın yardım asistanıyım. Tarama, yedekler, güvenlik ya da ayarlarla ilgili ne merak ediyorsan sorabilirsin.",
+    "placeholder": "Bir soru yaz…",
+    "send": "Gönder",
+    "offline": "Çevrimdışı çalışır, hiçbir şey gönderilmez.",
+    "community": "Topluluk",
+    "fallback": "Bunu tam anlayamadım. Soruyu farklı kelimelerle dener misin? Olmazsa topluluk sunucumuzda yardımcı olabiliriz.",
+    "topics": [
+      {
+        "q": "Dosyalarıma dokunuyor mu?",
+        "keys": [
+          "dokun",
+          "dosyalarim",
+          "dosyami",
+          "dosyama",
+          "onay",
+          "salt okunur",
+          "guvenli mi",
+          "~zarar",
+          "~degis",
+          "~bozul"
+        ],
+        "answer": "Hayır, onayın olmadan hiçbir dosya değişmez. Tarama tamamen salt okunur yapılır. Bir düzeltme uygulamak istediğinde önce ne değişeceğini gösteren bir plan çıkar ve her öğeyi tek tek onaylarsın. Uygulamadan önce otomatik yedek alınır, bir sorun çıkarsa değişiklik kendiliğinden geri alınır."
+      },
+      {
+        "q": "Nasıl tarama yaparım?",
+        "keys": [
+          "tara",
+          "nasil basla",
+          "klasor",
+          "surukle",
+          "birak",
+          "ilk adim",
+          "~kullan",
+          "~sec",
+          "nasil kullan",
+          "ne ise yarar"
+        ],
+        "answer": "Ana ekrandaki kutuya sunucu klasörünü sürükleyip bırakman ya da kutuya tıklayıp klasörü seçmen yeterli. Klasör, içinde server.properties ve plugins klasörü olan ana sunucu klasörü olmalı. Birkaç saniye içinde sağlık raporu açılır."
+      },
+      {
+        "q": "Sağlık skoru ne demek?",
+        "keys": [
+          "skor",
+          "puan",
+          "saglik",
+          "100",
+          "not"
+        ],
+        "answer": "Sağlık skoru 0 ile 100 arasında genel bir özet. Güvenlik bulguları, yapılandırma sorunları, karakter bozulmaları ve uyumluluk uyarıları ağırlıklarına göre puanı düşürür. Skor tek başına bir hüküm değil, asıl önemli olan kartlardaki ayrıntılar."
+      },
+      {
+        "q": "Yedekler nerede?",
+        "keys": [
+          "yedek",
+          "geri al",
+          "geri don",
+          "kurtar",
+          "eski haline"
+        ],
+        "answer": "Yedekler varsayılan olarak sunucu klasörünün dışında, ~/Foxivo/Yedekler altında tutulur ve 30 gün saklanır. Konumu ve süreyi Ayarlar › Yedekleme bölümünden değiştirebilirsin. Yaptığın her işlemi Yedekler ve geri alma ekranından tek tıkla geri alabilirsin."
+      },
+      {
+        "q": "Güvenlik taraması virüs mü buluyor?",
+        "keys": [
+          "virus",
+          "zararli",
+          "guvenlik",
+          "supheli",
+          "backdoor",
+          "arka kapi",
+          "jar",
+          "hack"
+        ],
+        "answer": "Güvenlik taraması plugin jar dosyalarını çalıştırmadan inceler ve tanınmayan adreslere bağlantı, komut çalıştırma, gizli op verme gibi şüpheli kalıpları arar. Bir bulgu kesin olarak zararlı demek değildir, yanlış pozitif olabilir. Bu yüzden her bulgu nedeniyle birlikte gösterilir ve inceleme önerilir."
+      },
+      {
+        "q": "Bu bulgular yanlış alarm olabilir mi?",
+        "keys": [
+          "yanlis",
+          "false positive",
+          "alarm",
+          "emin",
+          "kesin",
+          "gercek mi",
+          "resmi",
+          "dogrula",
+          "modrinth",
+          "orijinal"
+        ],
+        "answer": "Olabilir; tarama bilinen şüpheli kalıpları arar ve bazı meşru eklentiler de benzer kod kullanır. Kesin cevabı resmi sürüm doğrulaması verir: her eklentinin dosya özeti Modrinth'teki resmi yüklemeyle karşılaştırılır. Birebir aynıysa dosyaya kimse dokunmamıştır; sahte ya da içine kod eklenmiş bir kopya bu eşleşmeyi geçemez. Resmi dosyalardaki notlar skoru düşürmez."
+      },
+      {
+        "q": "Örnek değerleri nasıl değiştiririm?",
+        "keys": [
+          "ornek",
+          "sunucuadiniz",
+          "placeholder",
+          "yer tutucu",
+          "~degistir",
+          "marka",
+          "server name",
+          "~isim"
+        ],
+        "answer": "Hazır paketlerdeki sunucuadiniz.com, Server Name, örnek Discord ve mağaza linkleri gibi değerleri tüm config, dil ve menü dosyalarında bulur. Kendi bilgilerini tek bir forma girersin, önce değişikliklerin önizlemesini görürsün, onaylarsan uygulanır. Renk kodları ve YAML yapısı bozulmaz."
+      },
+      {
+        "q": "Türkçe karakterler neden bozuk?",
+        "keys": [
+          "turkce",
+          "karakter",
+          "bozuk",
+          "encoding",
+          "kodlama",
+          "utf",
+          "harf"
+        ],
+        "answer": "Ã¼, ÅŸ gibi bozulmuş Türkçe karakterleri ve yanlış kodlanmış dosyaları bulur. Yalnızca güvenle düzeltilebilecek olanları önerir ve önce/sonra önizlemesi gösterir. Emin olunamayan durumlarda dosyaya dokunmaz, elle kontrol etmeni önerir."
+      },
+      {
+        "q": "Sunucum kasıyor, ne yapabilirim?",
+        "keys": [
+          "optimize",
+          "performans",
+          "lag",
+          "tps",
+          "kasma",
+          "kasiyor",
+          "hiz",
+          "ram",
+          "donma"
+        ],
+        "answer": "Optimizasyon bölümü server.properties, Paper/Spigot ayarları ve JVM bayraklarına bakıp öneriler sunar. Hiçbiri kendiliğinden uygulanmaz; her önerinin beklenen etkisi, riski ve nasıl geri alınacağı yazar. Oyun deneyimini değiştiren ayarlar ayrıca işaretlenir."
+      },
+      {
+        "q": "İki anticheat birlikte çalışır mı?",
+        "keys": [
+          "anticheat",
+          "vulcan",
+          "matrix",
+          "grim",
+          "spartan",
+          "hile"
+        ],
+        "answer": "Yüklü anticheat eklentilerini tanır. Birden fazlasının aynı anda çalışması, sürüm uyumu ve yanlış tespit riski gibi konularda yorum yapar. Bunlar kesin hüküm değil, gözlemdir. Emin olunmayan ayarlar hakkında yorum yapılmaz."
+      },
+      {
+        "q": "Sunucu açıkken değişiklik yapılır mı?",
+        "keys": [
+          "~calisiyor",
+          "acikken",
+          "sunucu acik",
+          "calisirken",
+          "calisan sunucu",
+          "session",
+          "~acik",
+          "~kapat"
+        ],
+        "answer": "Sunucu açıkken dosyaları değiştirirsen sunucu kapanırken değişiklikler ezilebilir. Bu yüzden uygulama çalışan sunucuyu algılar ve o sırada yazma işlemlerini durdurur. Değişiklik yapmadan önce sunucuyu kapatman yeterli."
+      },
+      {
+        "q": "Hosting'deki sunucumu tarayabilir miyim?",
+        "keys": [
+          "sftp",
+          "uzak",
+          "hosting",
+          "panel",
+          "ftp",
+          "pterodactyl",
+          "vds",
+          "vps"
+        ],
+        "answer": "SFTP ile hosting'deki sunucuna bağlanıp aynı taramayı yapabilirsin. İlk aşamada bağlantı salt okunurdur, dosyalar yalnızca analiz için okunur. Uzak sunucuya yazma ayrı bir onay adımıyla gelecek."
+      },
+      {
+        "q": "Verilerim bir yere gönderiliyor mu?",
+        "keys": [
+          "internet",
+          "veri",
+          "gizlilik",
+          "gonder",
+          "telemetri",
+          "takip",
+          "kisisel"
+        ],
+        "answer": "Dosyalarının içeriği asla internete gönderilmez. Uygulama yalnızca güncelleme ve kural paketi denetimi için ağa çıkar, bunu da Ayarlar'dan kapatabilirsin. Anonim kullanım verisi varsayılan olarak kapalıdır."
+      },
+      {
+        "q": "Windows uyarı veriyor, ne yapmalıyım?",
+        "keys": [
+          "smartscreen",
+          "windows uyari",
+          "imza",
+          "defender",
+          "antivirus",
+          "korudu",
+          "acilmiyor"
+        ],
+        "answer": "Uygulama ücretsiz ve açık kaynak olduğu için ücretli bir kod imzası kullanmıyor. Bu yüzden Windows ilk açılışta \"Windows bilgisayarınızı korudu\" uyarısı gösterebilir; \"Ek bilgi\" › \"Yine de çalıştır\" ile açabilirsin. İndirdiğin dosyayı GitHub sürüm sayfasındaki SHA256 değeriyle doğrulayabilirsin."
+      },
+      {
+        "q": "Ücretli mi?",
+        "keys": [
+          "ucret",
+          "para",
+          "bedava",
+          "acik kaynak",
+          "lisans",
+          "github",
+          "kaynak kod",
+          "fiyat"
+        ],
+        "answer": "Tamamen ücretsiz ve açık kaynak (MIT lisansı). Kaynak kodunu GitHub'da herkes inceleyebilir, katkıda bulunabilir."
+      },
+      {
+        "q": "Dili nasıl değiştiririm?",
+        "keys": [
+          "dil",
+          "ingilizce",
+          "english",
+          "turkce arayuz",
+          "dil degis",
+          "dili degis"
+        ],
+        "answer": "Üst çubuktaki TR/EN düğmesinden ya da Ayarlar › Genel › Dil bölümünden anında değiştirebilirsin, yeniden başlatmak gerekmez. Kurulum sırasında seçtiğin dil ilk açılışta otomatik gelir."
+      },
+      {
+        "q": "Tema nereden değişir?",
+        "keys": [
+          "tema",
+          "koyu",
+          "karanlik",
+          "acik tema",
+          "gorunum",
+          "renk",
+          "animasyon",
+          "glow",
+          "hareket"
+        ],
+        "answer": "Uygulama koyu temayla gelir. Ayarlar › Genel bölümünde arayüz boyutu, arka plan ışığı ve Hareketi azalt seçenekleri var. Ayarlara üstteki dişli simgesinden ulaşabilirsin."
+      },
+      {
+        "q": "Hangi sunucu türleri destekleniyor?",
+        "keys": [
+          "paper",
+          "spigot",
+          "purpur",
+          "folia",
+          "bukkit",
+          "velocity",
+          "bungee",
+          "forge",
+          "fabric",
+          "surum",
+          "destek"
+        ],
+        "answer": "Paper, Spigot, Purpur ve Folia sunucularını tanır; Velocity ve BungeeCord proxy'leri için kontroller de eklenecek. Sunucu türü ve Minecraft sürümü tarama sırasında otomatik tespit edilir."
+      },
+      {
+        "q": "Mac veya Linux'ta çalışır mı?",
+        "keys": [
+          "mac",
+          "macos",
+          "linux",
+          "ubuntu",
+          "isletim sistemi",
+          "platform",
+          "windows 10"
+        ],
+        "answer": "Evet. Windows için kurulum dosyası (.exe), macOS için .dmg, Linux için AppImage ve .deb paketleri var. Hepsi GitHub sürüm sayfasından indirilebilir."
+      },
+      {
+        "q": "Güncellemeler nasıl geliyor?",
+        "keys": [
+          "guncelle",
+          "yeni surum",
+          "update",
+          "kural paketi",
+          "kural veritabani"
+        ],
+        "answer": "Ayarlar › Hakkında bölümündeki \"Güncellemeleri denetle\" düğmesiyle yeni sürüme bakabilirsin; otomatik denetim açıksa uygulama açılışta kendisi bakar. Yeni sürüm varsa \"Güncelle\" ile indirilir ve kurulur. İndirilen paketin imzası doğrulanır, imzası tutmayan bir dosya kurulmaz."
+      },
+      {
+        "q": "Raporu nasıl paylaşırım?",
+        "keys": [
+          "paylas",
+          "rapor",
+          "disa aktar",
+          "forum",
+          "ekran goruntusu"
+        ],
+        "answer": "Sonuç ekranındaki \"Raporu paylaş\" düğmesi raporu tek dosya olarak dışa aktarır. IP adresleri, kullanıcı adları, dosya yolları ve şifreler maskelenir; forumda ya da destek kanalında rahatça paylaşabilirsin."
+      },
+      {
+        "q": "Uygulama hata verirse ne yapmalıyım?",
+        "keys": [
+          "hata",
+          "cokuyor",
+          "coktu",
+          "=calismiyor",
+          "=acilmadi",
+          "bug",
+          "sorun"
+        ],
+        "answer": "Önce uygulamayı kapatıp yeniden aç. Sorun sürerse Ayarlar › Güvenlik ve gizlilik › Tanılama günlüğünü dışa aktar ile günlüğü kaydedip topluluk sunucumuzda paylaşabilirsin; kişisel yollar otomatik maskelenir. Hiçbir durumda dosyaların yarım yazılmaz."
+      },
+      {
+        "q": "Size nasıl ulaşırım?",
+        "keys": [
+          "iletisim",
+          "ulas",
+          "destek",
+          "discord",
+          "yardim",
+          "yetkili",
+          "insan"
+        ],
+        "answer": "Buradan çözemediğin bir konu olursa aşağıdaki Topluluk bağlantısından Discord sunucumuza katılabilirsin. Foxivo hakkında bilgi için foxivo.com.tr adresine bakabilirsin."
+      },
+      {
+        "q": "Bu uygulamayı kim yaptı?",
+        "keys": [
+          "foxivo",
+          "kim yapti",
+          "gelistirici",
+          "launcher",
+          "yapimci"
+        ],
+        "answer": "Uygulama Foxivo tarafından geliştiriliyor. Foxivo'nun Minecraft launcher çözümleri ve diğer araçları için foxivo.com.tr adresine göz atabilirsin."
+      },
+      {
+        "q": "",
+        "keys": [
+          "merhaba",
+          "selam",
+          "slm",
+          "hey",
+          "iyi gunler",
+          "naber"
+        ],
+        "answer": "Merhaba! Sana nasıl yardımcı olabilirim? Tarama, yedekler, güvenlik ya da ayarlarla ilgili sorabilirsin."
+      },
+      {
+        "q": "",
+        "keys": [
+          "tesekkur",
+          "sagol",
+          "eyvallah",
+          "tsk",
+          "eline saglik"
+        ],
+        "answer": "Rica ederim! Başka bir sorun olursa buradayım."
+      }
+    ],
+    "newChat": "Yeni sohbet",
+    "related": "Bunlar da işine yarayabilir",
+    "thinking": "Yazıyor"
+  },
+  "foxivo": {
+    "poweredBy": "Powered by"
+  },
+  "tray": {
+    "show": "Aç",
+    "quit": "Çıkış"
+  },
+  "update": {
+    "available": "Yeni sürüm hazır: {v}",
+    "availableShort": "Yeni sürüm var: {v}",
+    "downloading": "{v} indiriliyor…",
+    "install": "Güncelle",
+    "later": "Sonra",
+    "check": "Güncellemeleri denetle",
+    "checking": "Denetleniyor…",
+    "latest": "En güncel sürümü kullanıyorsun",
+    "error": "Güncelleme sunucusuna ulaşılamadı"
+  }
+}
