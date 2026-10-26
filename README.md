@@ -4,6 +4,13 @@ Minecraft sunucu klasörünü seç, saniyeler içinde sağlık raporunu gör. Ha
 
 Ücretsiz ve açık kaynak. Windows, macOS ve Linux.
 
+### [⬇ Son sürümü indir](https://github.com/FoxivoSoftware/sunucu-analiz-foxivo/releases/latest)
+
+[![Son sürüm](https://img.shields.io/github/v/release/FoxivoSoftware/sunucu-analiz-foxivo?label=s%C3%BCr%C3%BCm&color=7c6cff)](https://github.com/FoxivoSoftware/sunucu-analiz-foxivo/releases/latest)
+[![İndirme](https://img.shields.io/github/downloads/FoxivoSoftware/sunucu-analiz-foxivo/total?label=indirme&color=3fb68b)](https://github.com/FoxivoSoftware/sunucu-analiz-foxivo/releases)
+
+Windows kurarken "bilinmeyen yayımcı" uyarısı çıkarsa: [ne yapmalı, neden çıkıyor](#smartscreen).
+
 > **English:** Pick your Minecraft server folder and get a health report in seconds. Read-only by default, nothing changes without your approval. Free and open source.
 
 ## Neler yapıyor
@@ -34,16 +41,42 @@ Sürümler [Releases](../../releases) sayfasında, her sürümde `SHA256SUMS` do
 
 Uygulama içinden güncellemek için **Ayarlar › Hakkında › Güncellemeleri denetle**. Güncelleme paketleri imzalıdır; imzası tutmayan bir dosya kurulmaz.
 
-Uygulama ücretli bir kod imzası kullanmıyor, bu yüzden ilk açılışta uyarı görebilirsin:
+<a id="smartscreen"></a>
 
-- **Windows:** "Windows bilgisayarınızı korudu" → **Ek bilgi** → **Yine de çalıştır**
-- **macOS:** uygulamaya sağ tıkla → **Aç** → **Aç**
+### Windows'ta "Bilinmeyen yayımcı" uyarısı
 
-İndirdiğin dosyayı doğrulamak için:
+Kurulum dosyasını açınca mavi bir **"Windows bilgisayarınızı korudu"** penceresi çıkabilir. Bu normal, şöyle devam edersin:
 
-```bash
-sha256sum -c SHA256SUMS --ignore-missing
-```
+1. Pencerede, yazının altındaki **Ek bilgi** bağlantısına tıkla.
+2. "Yayımcı: **Bilinmeyen yayımcı**" satırı ve altta **Yine de çalıştır** düğmesi görünür.
+3. **Yine de çalıştır**'a tıkla. Kurulum dil seçimiyle başlar.
+
+Bu uyarı yalnızca ilk kurulumda çıkar; kurduktan sonra uygulama normal açılır, güncellemeler de uygulamanın içinden gelir.
+
+**Neden çıkıyor?** Windows SmartScreen, tanımadığı dosyalarda uyarı verir. Bir dosyayı tanıması için ya **ücretli bir kod imzası** taşıması (yılda yüzlerce dolar) ya da çok sayıda kişi tarafından indirilip **itibar kazanmış** olması gerekir. Bu uygulama ücretsiz ve açık kaynak olduğu için ücretli imza kullanmıyor, yeni sürümlerin de henüz indirme geçmişi yok. Uyarı, dosyada virüs bulunduğu anlamına **gelmez**; Windows sadece "bu dosyayı tanımıyorum" diyor.
+
+**Tarayıcı da uyarabilir:**
+
+- **Edge:** "yaygın olarak indirilmiyor" derse dosyanın yanındaki **⋯** → **Koru** → **Daha fazla göster** → **Yine de koru**.
+- **Chrome:** "güvenli olmayabilir" derse **Koru** (veya **Yine de indir**).
+
+**Dosyanın gerçekten bizim yayınladığımız dosya olduğundan nasıl emin olurum?**
+
+- Yalnızca bu sayfanın [Releases](../../releases) bölümünden veya [foxivo.com.tr](https://foxivo.com.tr) üzerinden indir.
+- Her sürüm notunda dosyaların **VirusTotal** tarama sonuçları var; onlarca antivirüsün sonucunu tek sayfada görebilirsin.
+- Dosya özetini karşılaştır. PowerShell'de:
+
+  ```powershell
+  Get-FileHash .\Sunucu.Analiz.-.Foxivo_1.0.0_x64-setup.exe
+  ```
+
+  Çıkan değer, sürümdeki `SHA256SUMS` dosyasındaki satırla aynı olmalı. Linux/macOS'ta: `sha256sum -c SHA256SUMS --ignore-missing`
+
+- Kaynak kodu bu depoda; isteyen kendisi derleyebilir.
+
+### macOS
+
+İlk açılışta "doğrulanamadı" uyarısı çıkarsa: uygulamaya **sağ tıkla → Aç → Aç**.
 
 Pencereyi kapatınca uygulama sistem tepsisinde çalışmaya devam eder; tamamen kapatmak için tepsi simgesinde **Çıkış**. Bu davranış ayarlardan değiştirilebilir.
 
